@@ -90,7 +90,6 @@ footer{
   padding: initial;
   padding: 0 0 10px 0;
   margin: 0 0 10px 0;
-  border-bottom: 1px solid #000;
 }
 .TodoItem{
   width: 320px;
@@ -126,6 +125,9 @@ footer{
   background-color: #ffffff;
   color: #000;
   cursor: pointer;
+}
+.TodoItem>.actions>div.active{
+  pointer-events: none;
 }
 .TodoItem>.actions>div:not(.active){
   background-color: #eeeeee;
