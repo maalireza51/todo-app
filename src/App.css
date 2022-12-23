@@ -1,0 +1,335 @@
+.Main{
+  max-width: 1200px;
+  margin: auto;
+}
+
+nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 10px auto;
+  height: 60px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3); 
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  background-color: #ffffff;
+}
+
+footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00141d;
+  color: #ffffff;
+  height: 80px;
+}
+
+.Add{
+  display: flex;
+  flex-wrap: nowrap;
+  max-width: 768px;
+  margin: 10px auto;
+  padding: 20px 12px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3); 
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  background-color: #ffffff;
+}
+.Add>input{
+  display: inline;
+  width: 100%;
+  border: 1px solid #cccccc;
+  padding: 10px;
+  border-radius: 5px 0 0 5px;
+  background-color: #efefef;
+}
+.Add>input:focus{
+  outline: 0;
+  border: 2px solid #cccccc;
+}
+.Add>button{
+  width: 20%;
+  color: #ffffff;
+  background-color: #4d82f7;
+  border-radius: 0 5px 5px 0;
+  border:1px solid #3675ff;
+  border-left: none;
+  cursor: pointer;
+}
+.Add>button:hover{
+  background-color: #2d62d4;
+}
+
+.TodoList{
+  margin: 10px auto;
+  padding: 20px 12px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3); 
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  background-color: #ffffff;
+}
+.TodoList>h3 {
+  font-size: 2em;
+  line-height: 1.1;
+  padding: 10px 0 10px 0;
+  margin: 0 0 10px 0;
+  text-align: center;
+  border-bottom: 1px solid #000;
+}
+
+.TodoItems{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, max-content));
+  gap: 15px;
+  grid-auto-flow: dense;
+  justify-content: center;
+  padding: initial;
+  padding: 0 0 10px 0;
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid #000;
+}
+.TodoItem{
+  width: 320px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+.TodoItem.primary{background-color: #ffffff;}
+.TodoItem.red{background-color: #dd2424;color: #ffffff;}
+.TodoItem.blue{background-color: #0084ff;color: #ffffff;}
+.TodoItem.purple{background-color: #8a2be2;color: #ffffff;}
+.TodoItem.yellow{background-color: #ffff00;}
+.TodoItem.green{background-color: #28a528;color: #ffffff;}
+.TodoItem>p{
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+  border-bottom: 1px solid #aaaaaa;
+}
+.TodoItem>.actions{
+  display: flex;
+  justify-content: center;
+}
+.TodoItem>.actions>div{
+  position: relative;
+  text-align: center;
+  width: 50%;
+  margin: 5px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  color: #000;
+  cursor: pointer;
+}
+.TodoItem>.actions>div:not(.active){
+  background-color: #eeeeee;
+  scale: 0.8;
+}
+.TodoItem>.actions>div:hover{
+  background-color: #ffffff;
+  scale: 1;
+  transition: 0.3s;
+}
+.TodoItem>.colors{
+  text-align: center;
+  padding: 10px 0;
+}
+.TodoItem>.colors>span{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 50%;
+  margin: 5px;
+  cursor: pointer;
+}
+.TodoItem>.colors>span:hover{
+  scale: 1.5;
+  transition: 0.3s;
+}
+.TodoItem>.colors>span.red{
+  background-color: #dd2424;
+}
+.TodoItem>.colors>span.blue{
+  background-color: #0084ff;
+}
+.TodoItem>.colors>span.purple{
+  background-color: #8a2be2;
+}
+.TodoItem>.colors>span.yellow{
+  background-color: #ffff00;
+}
+.TodoItem>.colors>span.green{
+  background-color: #28a528;
+}
+.TodoItem>.colors>span.primary{
+  background-color: #ffffff;
+}
+.TodoItem>.delete{
+  position: relative;
+  text-align: center;
+  font-size: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+.TodoItem>.delete:hover::before{
+  content:"";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.Options{
+  margin: 10px auto;
+  padding: 20px 12px;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3); 
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  background-color: #ffffff;
+}
+.Options>h3 {
+  font-size: 2em;
+  line-height: 1.1;
+  padding: 10px 0 10px 0;
+  margin: 0 0 10px 0;
+  text-align: center;
+  border-bottom: 1px solid #000;
+}
+.OptionItems{  
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;  
+  gap: 10px;
+}
+.OptionItems>div{
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+.OptionItems>div>h5{
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  background-color: #00141d;
+  color: #ffffff;
+}
+
+.OptionItems>.actionOption>div{
+  text-align: center;
+  width: 50%;
+  margin: 10px auto;
+  background-color: #005fb8;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+.OptionItems>.actionOption>div:hover{
+  background-color: #00488b;
+}
+
+.OptionItems>.remainingOption>div{
+  text-align: center;
+  margin: 10px auto;
+}
+.OptionItems>.remainingOption>div>span{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: #005fb8;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+.OptionItems>.statusOption>div{
+  position: relative;
+  text-align: center;
+  width: 50%;
+  margin: 10px auto;  
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #cccccc;
+}
+.OptionItems>.statusOption>div.active{
+  background-color: #005fb8;
+  color: #ffffff;
+}
+.OptionItems>.statusOption>div:hover:before{
+  content:"";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.08);
+}
+
+.OptionItems>.colorOption>.colors{
+  text-align: center;
+  padding: 10px 0;
+}
+.OptionItems>.colorOption>.colors>span{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 50%;
+  margin: 5px;
+  cursor: pointer;
+}
+.OptionItems>.colorOption>.colors>span:hover{
+  scale: 1.5;
+  transition: 0.3s;
+}
+.OptionItems>.colorOption>.colors>span.active{
+  scale: 1.5;
+}
+.OptionItems>.colorOption>.colors>span.red{
+  background-color: #dd2424;
+}
+.OptionItems>.colorOption>.colors>span.blue{
+  background-color: #0084ff;
+}
+.OptionItems>.colorOption>.colors>span.purple{
+  background-color: #8a2be2;
+}
+.OptionItems>.colorOption>.colors>span.yellow{
+  background-color: #ffff00;
+}
+.OptionItems>.colorOption>.colors>span.green{
+  background-color: #28a528;
+}
+.OptionItems>.colorOption>.colors>span.primary{
+  background-color: #ffffff;
+}
+
+@media screen and (max-width:768px) {
+  nav,.Add,.TodoList,.Options{
+    border-radius: 0;
+    border: 0;
+    box-shadow: none;
+  }
+  nav{
+    margin: 0 auto;
+  }
+  .Add{
+    margin: 1px auto -1px auto;
+  }
+  .TodoList,.Options{
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+}
