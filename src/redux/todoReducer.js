@@ -1,3 +1,5 @@
+import produce from "immer";
+
 const initState = {
     entities: [
         { id: 0, title: 'title 1', completed: true, color: "red" },
@@ -9,57 +11,80 @@ const initState = {
     ]
 }
 
-const todos = (state = initState, action) => {
+//Using Reducer By Default Way
+// const todos = (state = initState, action) => {
+//     switch (action.type) {
+//         case "todos/addTodo":
+//             const todo = action.payload;
+//             return ({
+//                 ...state,
+//                 entities: [
+//                     ...state.entities,
+//                     todo
+//                 ]
+//             })
+
+//         case "todos/toggleStatus":
+//             const toggledTodo = action.payload
+//             return {
+//                 ...state,
+//                 entities: state.entities.map(todo => {
+//                     if (todo.id === toggledTodo.id) {
+//                         return {
+//                             ...todo,
+//                             completed: !todo.completed
+//                         }
+//                     }
+
+//                     return todo
+//                 })
+//             }
+//         case "todos/toggleColor":
+//             const toggledColor = action.payload
+//             return {
+//                 ...state,
+//                 entities: state.entities.map(todo => {
+//                     if (todo.id === toggledColor.id) {
+//                         return {
+//                             ...todo,
+//                             color: toggledColor.color
+//                         }
+//                     }
+
+//                     return todo
+//                 })
+//             }
+//         case "todos/deleteItem":
+//             const {id} = action.payload
+//             return {
+//                 ...state,
+//                 entities: state.entities.filter(todo => todo.id !== id )
+//             }
+//         default:
+//             return { ...state }
+//     }
+// }
+
+//Using Reducer By immer
+const todos = produce((state, action) => {
     switch (action.type) {
         case "todos/addTodo":
             const todo = action.payload;
-            return ({
-                ...state,
-                entities: [
-                    ...state.entities,
-                    todo
-                ]
-            })
-
+            state.entities.push(todo)
+            break;
         case "todos/toggleStatus":
             const toggledTodo = action.payload
-            return {
-                ...state,
-                entities: state.entities.map(todo => {
-                    if (todo.id === toggledTodo.id) {
-                        return {
-                            ...todo,
-                            completed: !todo.completed
-                        }
-                    }
-
-                    return todo
-                })
-            }
+            state.entities.find(item => item.id === toggledTodo.id).completed = !state.entities.find(item => item.id === toggledTodo.id).completed
+            break;
         case "todos/toggleColor":
             const toggledColor = action.payload
-            return {
-                ...state,
-                entities: state.entities.map(todo => {
-                    if (todo.id === toggledColor.id) {
-                        return {
-                            ...todo,
-                            color: toggledColor.color
-                        }
-                    }
-
-                    return todo
-                })
-            }
+            state.entities.find(item => item.id === toggledColor.id).color = toggledColor.color
+            break;
         case "todos/deleteItem":
-            const {id} = action.payload
-            return {
-                ...state,
-                entities: state.entities.filter(todo => todo.id !== id )
-            }
-        default:
-            return { ...state }
+            const { id } = action.payload
+            state.entities = state.entities.filter(item=>item.id!==id)
+            break;
     }
-}
+}, initState)
 
 export default todos
