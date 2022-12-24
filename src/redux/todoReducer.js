@@ -81,7 +81,7 @@ const todos = produce((state, action) => {
             state.entities.find(item => item.id === toggledColor.id).color = toggledColor.color
             break;
         case "todos/deleteItem":
-            const { id } = action.payload
+            const id = action.payload
             state.entities = state.entities.filter(item=>item.id!==id)
             break;
     }

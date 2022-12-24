@@ -209,8 +209,9 @@ footer{
 }
 .OptionItems{  
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;  
+  grid-template-columns: repeat(auto-fit, minmax(250px, max-content));;  
   gap: 10px;
+  justify-content: center;
 }
 .OptionItems>div{
   border-radius: 5px;

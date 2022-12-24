@@ -1,6 +1,58 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { filterColor, filterStatus } from '../redux/actionTypes'
 
 export const Options = () => {
+    const colors = useSelector(state => state.filter.filterColors)
+    const status = useSelector(state => state.filter.status)
+
+    const dispatch = useDispatch()
+
+
+    const handleColorFilter = (e) => {
+        dispatch(filterColor(e.target.getAttribute("color")))
+    }
+    const handleStatusFilter = (e) => {
+        dispatch(filterStatus(e.target.getAttribute("status")))
+    }
+
+    const showColors = colors.map((item, index) => {
+        const active = item.status;
+        return <span
+            key={index}
+            color={item.color}
+            className={`${item.color} ${active ? "active" : ""}`}
+            onClick={handleColorFilter}>
+        </span>
+    })
+
+    const showStatus = () => {
+        return (
+            <>
+                <div
+                    status="all"
+                    className={status === 'all' ? 'active' : null}
+                    onClick={handleStatusFilter}>
+                    All
+                </div>
+
+                <div
+                    status="pending"
+                    className={status === 'pending' ? 'active' : null}
+                    onClick={handleStatusFilter}>
+                    Pending
+                </div>
+
+                <div
+                    status="completed"
+                    className={status === 'completed' ? 'active' : null}
+                    onClick={handleStatusFilter}>
+                    Completed
+                </div>
+            </>
+        )
+    }
+
     return (
         <div className='Options'>
             <h3>Options</h3>
@@ -16,19 +68,12 @@ export const Options = () => {
                 </div>
                 <div className='statusOption'>
                     <h5>Filter By Status</h5>
-                    <div>All</div>
-                    <div>Pending</div>
-                    <div className='active'>Completed</div>
+                    {showStatus()}
                 </div>
                 <div className='colorOption'>
                     <h5>Filter By Color</h5>
                     <div className='colors'>
-                        <span className='red active'></span>
-                        <span className='blue'></span>
-                        <span className='purple'></span>
-                        <span className='yellow active'></span>
-                        <span className='green'></span>
-                        <span className='primary active'></span>
+                        {showColors}
                     </div>
                 </div>
             </div>
