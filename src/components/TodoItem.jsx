@@ -1,10 +1,15 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { deleteItem, toggleColor, toggleStatus } from '../redux/actionTypes'
 
-export const TodoItem = ({ id, title, status, style }) => {
+export const TodoItem = ({ id }) => {
 
+    const todoItem = useSelector(state=>state.todos.entities.find(item=>item.id===id))
     const dispatch = useDispatch()
+    
+    const title = todoItem.title
+    const status = todoItem.completed
+    const style = todoItem.color
 
     const handleStatusClick = () => {
         dispatch(toggleStatus(id))

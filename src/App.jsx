@@ -5,13 +5,13 @@ import { Options } from './components/Options'
 import { TodoItem } from './components/TodoItem'
 import { TodoList } from './components/TodoList'
 import { Layout } from './layout/Layout'
-import {useSelector} from 'react-redux'
+import {shallowEqual, useSelector} from 'react-redux'
+import { selectTodoId } from './redux/actionTypes'
 
 function App() {
-  const todosList = useSelector(state => state.todos.entities)
-
+  const todosList = useSelector(selectTodoId, shallowEqual)
   const todos = todosList.map(todo => {
-    return <TodoItem key={todo.id} id={todo.id} title={todo.title} status={todo.completed} style={todo.color} />
+    return <TodoItem key={todo} id={todo}/>
   })
 
   return (

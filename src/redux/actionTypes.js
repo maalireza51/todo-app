@@ -25,3 +25,4 @@ export const deleteItem = (id) => ({
         id
     }
 })
+export const selectTodoId = state => state.todos.entities.map(({id})=>id)
