@@ -7,63 +7,9 @@ const initState = {
         { id: 2, title: 'title 3', completed: true, color: "purple" },
         { id: 3, title: 'title 4', completed: false, color: "yellow" },
         { id: 4, title: 'title 5', completed: false, color: "green" },
-        { id: 5, title: 'title 6', completed: true }
+        { id: 5, title: 'title 6', completed: true , color:"primary"}
     ]
 }
-
-//Using Reducer By Default Way
-// const todos = (state = initState, action) => {
-//     switch (action.type) {
-//         case "todos/addTodo":
-//             const todo = action.payload;
-//             return ({
-//                 ...state,
-//                 entities: [
-//                     ...state.entities,
-//                     todo
-//                 ]
-//             })
-
-//         case "todos/toggleStatus":
-//             const toggledTodo = action.payload
-//             return {
-//                 ...state,
-//                 entities: state.entities.map(todo => {
-//                     if (todo.id === toggledTodo.id) {
-//                         return {
-//                             ...todo,
-//                             completed: !todo.completed
-//                         }
-//                     }
-
-//                     return todo
-//                 })
-//             }
-//         case "todos/toggleColor":
-//             const toggledColor = action.payload
-//             return {
-//                 ...state,
-//                 entities: state.entities.map(todo => {
-//                     if (todo.id === toggledColor.id) {
-//                         return {
-//                             ...todo,
-//                             color: toggledColor.color
-//                         }
-//                     }
-
-//                     return todo
-//                 })
-//             }
-//         case "todos/deleteItem":
-//             const {id} = action.payload
-//             return {
-//                 ...state,
-//                 entities: state.entities.filter(todo => todo.id !== id )
-//             }
-//         default:
-//             return { ...state }
-//     }
-// }
 
 //Using Reducer By immer
 const todos = produce((state, action) => {
@@ -83,6 +29,15 @@ const todos = produce((state, action) => {
         case "todos/deleteItem":
             const id = action.payload
             state.entities = state.entities.filter(item=>item.id!==id)
+            break;
+        case "todos/completeAll":
+            state.entities = state.entities.map(item=>({...item,completed:true}))
+            break;
+        case "todos/pendingAll":
+            state.entities = state.entities.map(item=>({...item,completed:false}))
+            break;
+        case "todos/removeCompleted":
+            state.entities = state.entities.filter(item=>!item.completed)
             break;
     }
 }, initState)

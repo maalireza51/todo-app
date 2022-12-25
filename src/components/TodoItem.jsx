@@ -1,10 +1,9 @@
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteItem, toggleColor, toggleStatus } from '../redux/actionTypes'
+import { colors, deleteItem, selectTodo, toggleColor, toggleStatus } from '../redux/actionTypes'
 
 export const TodoItem = ({ id }) => {
 
-    const todoItem = useSelector(state=>state.todos.entities.find(item=>item.id===id))
+    const todoItem = useSelector(selectTodo(id))
     const dispatch = useDispatch()
     
     const title = todoItem.title
@@ -14,30 +13,26 @@ export const TodoItem = ({ id }) => {
     const handleStatusClick = () => {
         dispatch(toggleStatus(id))
     }
-
-    const handleColorClick = (e) => {
-        const color = e.target.className;
+    
+    const handleColorClick = (color) => {
         dispatch(toggleColor(id,color))
     }
-
+    
     const handleDelete = (e) => {
         dispatch(deleteItem(id))
     }
-
+    
+    const colorItems = colors.map((item,index)=><span key={index} className={item} onClick={()=>handleColorClick(item)}></span>)
+    
     return (
-        <div className={`TodoItem ${style?style:"primary"}`}>
+        <div className={`TodoItem ${style}`}>
             <p>{title}</p>
             <div className='actions'>
                 <div className={status?'active':''} onClick={handleStatusClick}>Completed</div>
                 <div className={!status?'active':''} onClick={handleStatusClick}>Pending</div>
             </div>
             <div className='colors'>
-                <span className='red' onClick={handleColorClick}></span>
-                <span className='blue' onClick={handleColorClick}></span>
-                <span className='purple' onClick={handleColorClick}></span>
-                <span className='yellow' onClick={handleColorClick}></span>
-                <span className='green' onClick={handleColorClick}></span>
-                <span className='primary' onClick={handleColorClick}></span>
+                {colorItems}
             </div>
             <div className='delete' onClick={handleDelete}>
                 DELETE

@@ -1,40 +1,21 @@
+import produce from "immer";
+
 const initState = {
-    status: "all",
-    filterColors: [
-        {color:"red",status:true},
-        {color:"blue",status:true},
-        {color:"purple",status:true},
-        {color:"yellow",status:true},
-        {color:"green",status:true},
-        {color:"primary",status:true}
-    ]
+    status: "All",
+    filterColors: []
 }
 
-const filter = (state = initState, action) => {
+const filter = produce((state, action) => {
     switch (action.type) {
         case "filters/filterStatus":
-            return {
-                ...state,
-                status: action.payload
-            }
+            state.status = action.payload
+            break;
         case "filters/filterColor":
-            const color = action.payload;
-            return {
-                ...state,
-                filterColors: state.filterColors.map((item,index) => {
-                    if (item.color === color) {
-                        return {
-                            ...item,
-                            status: !item.status
-                        }
-                    }
-
-                    return item
-                })
-            }
-        default:
-            return state
+            const color = action.payload.color;
+            const filter = action.payload.filter;
+            filter ? state.filterColors.push(color) : state.filterColors=state.filterColors.filter(item=>item!==color)           
+            break;
     }
-}
+}, initState)
 
 export default filter

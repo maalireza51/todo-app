@@ -240,6 +240,10 @@ footer{
 .OptionItems>.actionOption>div:hover{
   background-color: #00488b;
 }
+.OptionItems>.actionOption>div.removeAll{
+  background-color: #dd2424;
+  color: #ffffff;
+}
 
 .OptionItems>.remainingOption>div{
   text-align: center;

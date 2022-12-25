@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const TodoList = ({ children }) => {
     return (
         <div className='TodoList'>
